@@ -3,6 +3,7 @@ const app = express();
 const PORT = 4000;
 const db = require('./config/database.js')
 
+app.use(express.json());
 app.use('/', require('./routes/index.js'));
 app.use('/api', require('./routes/url_route.js'));
 app.listen(PORT, ()=> {

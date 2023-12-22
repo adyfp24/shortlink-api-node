@@ -1,15 +1,17 @@
 const urlModel = require('../models/url');
 
-const getAllUrls = async (req, res) => {
-  try {
-    const urls = await urlModel.getAllUrls();
-    res.json(urls);
-  } catch (err) {
-    console.error('Error in controller:', err);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+const RedirectUrl = (req, res) => {
+  const code = req.params.code;
+  urlModel.getUrl(code, res)
 };
 
+const ShortUrl = (req, res) => {
+  const long_url = req.body.long_url;
+  const custom_name = req.body.custom_name;
+  urlModel.getShortUrl(long_url, custom_name);
+}
+
 module.exports = {
-  getAllUrls,
+  RedirectUrl,
+  ShortUrl,
 };
